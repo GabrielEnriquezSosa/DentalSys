@@ -17,6 +17,7 @@ import {
   MoreHorizontal,
   TriangleAlert,
   ClipboardPaste,
+  Banknote,
 } from "lucide-react";
 
 const modulesData = [
@@ -25,6 +26,7 @@ const modulesData = [
     title: "Expedientes",
     desc: "Historial clínico de pacientes",
     colorClass: "bg-blue-50",
+    colorIcon: "#3c82f6",
   },
   {
     icon: ClipboardList,
@@ -32,18 +34,23 @@ const modulesData = [
     desc: "Generar nuevas prescripciones",
     colorClass: "bg-green-50",
     path: "/receta",
+    colorIcon: "#22c55d",
   },
   {
     icon: CalendarCheck,
     title: "Agenda de citas",
     desc: "Gestión de tiempos y turnos",
     colorClass: "bg-orange-50",
+    path: "/agenda",
+    colorIcon: "#f97315",
   },
   {
     icon: Stethoscope,
     title: "Servicios",
     desc: "Catálogo de tratamientos",
     colorClass: "bg-purple-50",
+    path: "/servicios",
+    colorIcon: "#a855f7",
   },
   {
     icon: BadgeInfo,
@@ -51,6 +58,7 @@ const modulesData = [
     desc: "Perfil profesional y cédula",
     colorClass: "bg-cyan-50",
     path: "/perfiles",
+    colorIcon: "#06b6d4",
   },
   {
     icon: Pill,
@@ -58,30 +66,45 @@ const modulesData = [
     desc: "Vademécum y stock base",
     colorClass: "bg-rose-50",
     path: "/medicamentos",
+    colorIcon: "#f43f5f",
   },
   {
     icon: DoorOpen,
     title: "Mi Consultorio",
     desc: "Configuración del local",
     colorClass: "bg-amber-50",
+    path: "/consultorio",
+    colorIcon: "#f59e0c",
   },
   {
     icon: FileCheck2,
     title: "Consentimiento",
     desc: "Documentos legales firma",
     colorClass: "bg-stone-50",
+    colorIcon: "#57534f",
   },
   {
     icon: FileBadge,
     title: "Certificado",
     desc: "Validaciones y licencias",
     colorClass: "bg-emerald-50",
+    path: "/certificado",
+    colorIcon: "#12b981",
   },
   {
     icon: Headset,
     title: "Soporte",
     desc: "Ayuda técnica directa",
     colorClass: "bg-indigo-50",
+    colorIcon: "#6466f1",
+  },
+  {
+    icon: Banknote,
+    title: "Recibir Pago",
+    desc: "Gestión de cobros y caja",
+    colorClass: "bg-teal-50",
+    path: "/pagos",
+    colorIcon: "#14b8a6",
   },
 ];
 
@@ -90,83 +113,100 @@ export const Dashboard = () => {
 
   return (
     <Layout>
-      <div className="dashboard-container">
+      <div className="p-10 w-full">
         {/* Hero Section */}
-        <div className="hero-banner">
-          <div className="hero-content">
-            <div className="hero-badge">
-              <span className="badge-dot" />
+        <div className="bg-slate-900 rounded-2xl p-10 flex justify-between items-center text-white mb-10 relative overflow-hidden shadow-md">
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 bg-sky-500/20 text-sky-400 py-2 px-4 rounded-full text-sm font-semibold mb-4">
+              <span className="w-2 h-2 bg-sky-400 rounded-full" />
               ESTADO DEL DÍA
             </div>
-            <h1 className="hero-title">0 citas programadas para hoy</h1>
-            <div className="hero-date">
-              <CalendarDays size={18} />
+            <h1 className="text-3xl font-bold mb-3">
+              0 citas programadas para hoy
+            </h1>
+            <div className="flex items-center gap-2 text-slate-400 text-base">
+              <CalendarDays size={20} />
               Martes, 17 de Septiembre, 2024
             </div>
           </div>
-          <button className="btn-primary">
-            <Plus size={18} />
+          <button className="bg-sky-500 text-white border-none py-3.5 px-6 rounded-lg font-bold text-base inline-flex items-center gap-2 cursor-pointer transition-all duration-200 shadow-[0_4px_12px_rgba(14,165,233,0.3)] z-10 hover:bg-sky-600 hover:-translate-y-[1px] active:translate-y-0">
+            <Plus size={20} />
             Agendar Nueva Cita
           </button>
         </div>
 
         {/* Modules Section */}
-        <div className="modules-header">
-          <div className="section-title">
-            <LayoutGrid color="#0ea5e9" />
+        <div className="flex justify-between items-center mb-6">
+          <div className="flex items-center gap-3 text-2xl font-bold">
+            <LayoutGrid color="#0ea5e9" size={28} />
             Gestión del Consultorio
           </div>
-          <div className="section-subtitle">10 módulos activos</div>
+          <div className="text-slate-500 text-base font-medium">
+            11 módulos activos
+          </div>
         </div>
 
-        <div className="modules-grid">
+        <div className="grid grid-cols-5 gap-5 mb-10">
           {modulesData.map((mod, i) => (
             <div
               key={i}
-              className={`module-card`}
+              className="bg-white rounded-2xl p-6 flex flex-col border border-slate-200 transition-all duration-200 cursor-pointer hover:-translate-y-1 hover:shadow-md hover:border-slate-300"
               onClick={() => mod.path && navigate(mod.path)}
             >
-              <div className={`module-icon-wrapper ${mod.colorClass}`}>
-                <mod.icon size={24} />
+              <div
+                className={`w-14 h-14 rounded-xl flex items-center justify-center mb-5 ${mod.colorClass}`}
+              >
+                <mod.icon size={28} color={mod.colorIcon} />
               </div>
-              <h3 className="module-title">{mod.title}</h3>
-              <p className="module-desc">{mod.desc}</p>
+              <h3 className="font-bold text-lg mb-2 text-slate-900">
+                {mod.title}
+              </h3>
+              <p className="text-sm text-slate-500 leading-relaxed">
+                {mod.desc}
+              </p>
             </div>
           ))}
         </div>
 
         {/* Bottom Summaries */}
-        <div className="summary-section">
+        <div className="grid grid-cols-2 gap-8">
           {/* RecordWeekly Summary */}
-          <div className="summary-card">
-            <div className="summary-header">
-              <span className="summary-title">Resumen Semanal</span>
-              <a href="#" className="summary-link">
+          <div className="bg-white rounded-2xl p-8 border border-slate-200">
+            <div className="flex justify-between items-center mb-6">
+              <span className="font-bold text-lg">Resumen Semanal</span>
+              <a
+                href="#"
+                className="text-sky-500 text-sm font-bold no-underline"
+              >
                 Ver reporte
               </a>
             </div>
 
-            <div className="progress-item">
-              <div className="progress-info">
-                <span className="progress-label">Pacientes atendidos</span>
-                <span className="progress-value">12</span>
+            <div className="mb-6">
+              <div className="flex justify-between mb-2 text-base">
+                <span className="text-slate-500 font-medium">
+                  Pacientes atendidos
+                </span>
+                <span className="font-bold text-slate-900">12</span>
               </div>
-              <div className="progress-bar-bg">
+              <div className="h-2.5 bg-slate-100 rounded-full overflow-hidden">
                 <div
-                  className="progress-bar-fill"
+                  className="h-full bg-sky-500 rounded-full"
                   style={{ width: "65%" }}
                 ></div>
               </div>
             </div>
 
-            <div className="progress-item">
-              <div className="progress-info">
-                <span className="progress-label">Nuevos expedientes</span>
-                <span className="progress-value">4</span>
+            <div className="mb-4">
+              <div className="flex justify-between mb-2 text-base">
+                <span className="text-slate-500 font-medium">
+                  Nuevos expedientes
+                </span>
+                <span className="font-bold text-slate-900">4</span>
               </div>
-              <div className="progress-bar-bg">
+              <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                 <div
-                  className="progress-bar-fill green"
+                  className="h-full bg-green-500 rounded-full"
                   style={{ width: "30%" }}
                 ></div>
               </div>
@@ -174,9 +214,9 @@ export const Dashboard = () => {
           </div>
 
           {/* Next Reminders */}
-          <div className="summary-card">
-            <div className="summary-header">
-              <span className="summary-title">Próximos Recordatorios</span>
+          <div className="bg-white rounded-2xl p-8 border border-slate-200">
+            <div className="flex justify-between items-center mb-6">
+              <span className="font-bold text-lg">Próximos Recordatorios</span>
               <button
                 style={{
                   background: "none",
@@ -185,28 +225,32 @@ export const Dashboard = () => {
                   color: "#94a3b8",
                 }}
               >
-                <MoreHorizontal size={20} />
+                <MoreHorizontal size={24} />
               </button>
             </div>
 
-            <div className="reminder-item">
-              <div className="reminder-content">
-                <TriangleAlert size={20} color="#f59e0b" />
-                <span className="reminder-text">
+            <div className="flex justify-between items-center py-4 border-b border-slate-100 last:border-b-0">
+              <div className="flex items-center gap-4">
+                <TriangleAlert size={24} color="#f59e0b" />
+                <span className="text-base font-medium text-slate-900">
                   Renovación de licencia médica
                 </span>
               </div>
-              <span className="reminder-time">2 días</span>
+              <span className="text-sm text-slate-400 italic font-medium">
+                2 días
+              </span>
             </div>
 
-            <div className="reminder-item">
-              <div className="reminder-content">
-                <ClipboardPaste size={20} color="#3b82f6" />
-                <span className="reminder-text">
+            <div className="flex justify-between items-center py-4 border-b border-slate-100 last:border-b-0">
+              <div className="flex items-center gap-4">
+                <ClipboardPaste size={24} color="#3b82f6" />
+                <span className="text-base font-medium text-slate-900">
                   Reabastecer guantes de nitrilo
                 </span>
               </div>
-              <span className="reminder-time">Mañana</span>
+              <span className="text-sm text-slate-400 italic font-medium">
+                Mañana
+              </span>
             </div>
           </div>
         </div>

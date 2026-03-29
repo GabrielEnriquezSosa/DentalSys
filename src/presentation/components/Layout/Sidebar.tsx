@@ -1,5 +1,4 @@
 import {
-  Smile,
   LayoutDashboard,
   Users,
   Calendar,
@@ -7,6 +6,7 @@ import {
   Settings,
   HelpCircle,
   LogOut,
+  Banknote
 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -14,53 +14,90 @@ export const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const baseItemClass =
+    "flex items-center gap-4 py-[11px] px-[15px] rounded-xl font-medium text-[16px] mb-2 transition-all duration-200 cursor-pointer border";
+
+  const normalItemClass =
+    "text-slate-500 hover:bg-slate-100 border-transparent";
+  const activeItemClass =
+    "bg-sky-100 text-sky-500 border-blue-800 hover:bg-sky-100";
+
   return (
-    <aside className="sidebar">
-      <div className="sidebar-header">
-        <Smile size={28} color="#0ea5e9" fill="#0ea5e9" />
-        <span>Dental.sys</span>
+    <aside className="w-[280px] bg-white border-r border-slate-200 flex flex-col shrink-0">
+      <div className="p-8 flex items-center gap-4 mb-2">
+        <div className="w-10 h-10 rounded-full bg-sky-500 shrink-0"></div>
+        <span className="text-[26px] font-bold text-sky-500 tracking-tight">
+          Dental.sys
+        </span>
       </div>
 
-      <nav className="sidebar-nav">
+      <nav className="flex-1 px-4 overflow-y-auto">
         <a
           href="/"
-          className={`nav-item ${location.pathname === "/" ? "active" : ""}`}
+          className={`${baseItemClass} ${location.pathname === "/" ? activeItemClass : normalItemClass}`}
           onClick={(e) => {
             e.preventDefault();
             navigate("/");
           }}
         >
-          <LayoutDashboard size={20} />
+          <LayoutDashboard
+            size={24}
+            strokeWidth={1.5}
+            className={
+              location.pathname === "/" ? "text-sky-500" : "text-slate-500"
+            }
+          />
           <span>Dashboard</span>
         </a>
-        <a href="#" className="nav-item">
-          <Users size={20} />
+        <a 
+          href="/pagos" 
+          className={`${baseItemClass} ${location.pathname === "/pagos" ? activeItemClass : normalItemClass}`}
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/pagos");
+          }}
+        >
+          <Banknote 
+            size={24} 
+            strokeWidth={1.5} 
+            className={location.pathname === "/pagos" ? "text-sky-500" : "text-slate-500"} 
+          />
+          <span>Recibir Pago</span>
+        </a>
+        <a href="#" className={`${baseItemClass} ${normalItemClass}`}>
+          <Users size={24} strokeWidth={1.5} className="text-slate-500" />
           <span>Pacientes</span>
         </a>
-        <a href="#" className="nav-item">
-          <Calendar size={20} />
+        <a href="#" className={`${baseItemClass} ${normalItemClass}`}>
+          <Calendar size={24} strokeWidth={1.5} className="text-slate-500" />
           <span>Agenda</span>
         </a>
-        <a href="#" className="nav-item">
-          <Package size={20} />
+        <a href="#" className={`${baseItemClass} ${normalItemClass}`}>
+          <Package size={24} strokeWidth={1.5} className="text-slate-500" />
           <span>Inventario</span>
         </a>
 
-        <div className="nav-section">
-          <div className="nav-section-title">Sistema</div>
-          <a href="#" className="nav-item">
-            <Settings size={20} />
+        <div className="mt-8">
+          <div className="text-[13px] font-semibold text-slate-500 uppercase tracking-widest mb-4 pl-4">
+            Sistema
+          </div>
+          <a href="#" className={`${baseItemClass} ${normalItemClass}`}>
+            <Settings size={24} strokeWidth={1.5} className="text-slate-500" />
             <span>Configuración</span>
           </a>
-          <a href="#" className="nav-item">
-            <HelpCircle size={20} />
+          <a href="#" className={`${baseItemClass} ${normalItemClass}`}>
+            <HelpCircle
+              size={24}
+              strokeWidth={1.5}
+              className="text-slate-500"
+            />
             <span>Soporte</span>
           </a>
         </div>
       </nav>
 
-      <div className="sidebar-footer">
-        <button className="logout-button">
+      <div className="p-5 border-t border-slate-200 flex items-center gap-3">
+        <button className="w-full flex items-center justify-center gap-3 p-3 bg-slate-800 text-white rounded-lg font-semibold text-sm cursor-pointer transition-colors duration-200 hover:bg-slate-900">
           <LogOut size={20} />
           <span>Cerrar Sesión</span>
         </button>

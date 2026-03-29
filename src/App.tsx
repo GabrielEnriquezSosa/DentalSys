@@ -3,6 +3,12 @@ import { Dashboard } from "./presentation/pages/Dashboard";
 import { PerfilesMedicos } from "./presentation/pages/PerfilesMedicos";
 import { Medicamentos } from "./presentation/pages/Medicamentos";
 import { RecetaMedica } from "./presentation/pages/RecetaMedica";
+import { Agenda } from "./presentation/pages/Agenda";
+import { CalendarioCitas } from "./presentation/pages/CalendarioCitas";
+import { Servicios } from "./presentation/pages/Servicios";
+import { MiConsultorio } from "./presentation/pages/MiConsultorio";
+import { RecibirPago } from "./presentation/pages/RecibirPago";
+import { CertificadoMedico } from "./presentation/pages/CertificadoMedico";
 
 function App() {
   return (
@@ -12,6 +18,12 @@ function App() {
         <Route path="/perfiles" element={<PerfilesMedicos />} />
         <Route path="/medicamentos" element={<Medicamentos />} />
         <Route path="/receta" element={<RecetaMedica />} />
+        <Route path="/agenda" element={<Agenda />} />
+        <Route path="/agenda/calendario" element={<CalendarioCitas />} />
+        <Route path="/servicios" element={<Servicios />} />
+        <Route path="/consultorio" element={<MiConsultorio />} />
+        <Route path="/pagos" element={<RecibirPago />} />
+        <Route path="/certificado" element={<CertificadoMedico />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
