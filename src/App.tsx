@@ -9,6 +9,8 @@ import { Servicios } from "./presentation/pages/Servicios";
 import { MiConsultorio } from "./presentation/pages/MiConsultorio";
 import { RecibirPago } from "./presentation/pages/RecibirPago";
 import { CertificadoMedico } from "./presentation/pages/CertificadoMedico";
+import { Soporte } from "./presentation/pages/Soporte";
+import { HistorialRecetas } from "./presentation/pages/HistorialRecetas";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/consultorio" element={<MiConsultorio />} />
         <Route path="/pagos" element={<RecibirPago />} />
         <Route path="/certificado" element={<CertificadoMedico />} />
+        <Route path="/soporte" element={<Soporte />} />
+        <Route path="/receta/historial" element={<HistorialRecetas />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

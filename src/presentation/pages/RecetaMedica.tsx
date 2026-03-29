@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { Layout } from "../components/Layout/Layout";
+import { Link } from "react-router-dom";
+import { AjustesRecetaModal } from "../components/modals/AjustesRecetaModal";
 import {
   FileText,
   History,
@@ -16,6 +19,7 @@ import {
 } from "lucide-react";
 
 export const RecetaMedica = () => {
+  const [showAjustes, setShowAjustes] = useState(false);
   const inputClass =
     "w-full border border-gray-300 rounded-xl px-4 py-3.5 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white transition-all text-gray-700 font-medium text-base";
   const labelClass =
@@ -39,10 +43,16 @@ export const RecetaMedica = () => {
             </h1>
           </div>
           <div className="flex gap-4">
-            <button className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-base transition-all border border-pink-500 text-pink-500 hover:bg-pink-50 disabled:opacity-50 disabled:cursor-not-allowed">
+            <Link
+              to="/receta/historial"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-base transition-all border border-pink-500 text-pink-500 hover:bg-pink-50 no-underline"
+            >
               <History size={18} /> Ver Hist. de Consultas
-            </button>
-            <button className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-base transition-all border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+            </Link>
+            <button
+              onClick={() => setShowAjustes(true)}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-base transition-all border border-gray-300 text-gray-700 bg-white hover:bg-gray-50"
+            >
               <Settings size={18} /> Ajustes Receta
             </button>
           </div>
@@ -303,6 +313,12 @@ export const RecetaMedica = () => {
           </button>
         </div>
       </div>
+
+      {/* Modal de Ajustes */}
+      <AjustesRecetaModal
+        isOpen={showAjustes}
+        onClose={() => setShowAjustes(false)}
+      />
     </Layout>
   );
 };

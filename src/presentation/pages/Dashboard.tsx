@@ -96,6 +96,7 @@ const modulesData = [
     title: "Soporte",
     desc: "Ayuda técnica directa",
     colorClass: "bg-indigo-50",
+    path: "/soporte",
     colorIcon: "#6466f1",
   },
   {
