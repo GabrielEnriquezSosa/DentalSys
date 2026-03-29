@@ -18,6 +18,7 @@ import {
   TriangleAlert,
   ClipboardPaste,
   Banknote,
+  Calculator,
 } from "lucide-react";
 
 const modulesData = [
@@ -81,6 +82,7 @@ const modulesData = [
     title: "Consentimiento",
     desc: "Documentos legales firma",
     colorClass: "bg-stone-50",
+    path: "/consentimiento",
     colorIcon: "#57534f",
   },
   {
@@ -106,6 +108,14 @@ const modulesData = [
     colorClass: "bg-teal-50",
     path: "/pagos",
     colorIcon: "#14b8a6",
+  },
+  {
+    icon: Calculator,
+    title: "Presupuesto",
+    desc: "Cotizaciones y estimados",
+    colorClass: "bg-violet-50",
+    path: "/presupuesto",
+    colorIcon: "#8b5cf6",
   },
 ];
 
@@ -147,7 +157,7 @@ export const Dashboard = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-5 gap-5 mb-10">
+        <div className="grid grid-cols-4 gap-5 mb-10">
           {modulesData.map((mod, i) => (
             <div
               key={i}

@@ -11,12 +11,15 @@ import { RecibirPago } from "./presentation/pages/RecibirPago";
 import { CertificadoMedico } from "./presentation/pages/CertificadoMedico";
 import { Soporte } from "./presentation/pages/Soporte";
 import { HistorialRecetas } from "./presentation/pages/HistorialRecetas";
+import { ConsentimientoInformado } from "./presentation/pages/ConsentimientoInformado";
+import { Presupuesto } from "./presentation/pages/Presupuesto";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Dashboard />} />
+
         <Route path="/perfiles" element={<PerfilesMedicos />} />
         <Route path="/medicamentos" element={<Medicamentos />} />
         <Route path="/receta" element={<RecetaMedica />} />
@@ -28,6 +31,8 @@ function App() {
         <Route path="/certificado" element={<CertificadoMedico />} />
         <Route path="/soporte" element={<Soporte />} />
         <Route path="/receta/historial" element={<HistorialRecetas />} />
+        <Route path="/consentimiento" element={<ConsentimientoInformado />} />
+        <Route path="/presupuesto" element={<Presupuesto />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
