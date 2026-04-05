@@ -1,4 +1,6 @@
 import { Layout } from "../components/Layout/Layout";
+import { CustomInput } from "../components/ui/CustomInput";
+import { formatPhoneMx, formatTextWithPunctuation } from "../utils/formatters";
 import { 
   Camera, 
   GraduationCap, 
@@ -61,14 +63,14 @@ export const MiConsultorio = () => {
           <div className="flex-1 flex flex-col gap-6">
             <div>
               <label className={labelClass}>NOMBRE DE LA CLÍNICA</label>
-              <input type="text" className={inputClass} defaultValue="Clínica Dental Martinez & Asociados" />
+              <CustomInput type="text" className={inputClass} placeholder="Clínica Dental Martinez & Asociados" maxLength={50} onInput={(e) => { e.currentTarget.value = formatTextWithPunctuation(e.currentTarget.value); }} />
             </div>
 
             <div>
               <label className={labelClass}>DOMICILIO FISCAL / CONSULTORIO</label>
               <div className="relative">
                 <MapPin size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                <input type="text" className={`${inputClass} pl-12`} defaultValue="Av. Reforma 405, Torre Médica II, Piso 12, Ciudad de México" />
+                <CustomInput type="text" className={`${inputClass} pl-12`} placeholder="Av. Reforma 405, Torre Médica II, Piso 12, Ciudad de México" maxLength={100} />
               </div>
             </div>
 
@@ -77,14 +79,18 @@ export const MiConsultorio = () => {
                 <label className={labelClass}>TELÉFONO PRINCIPAL</label>
                 <div className="relative">
                   <Phone size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                  <input type="text" className={`${inputClass} pl-12`} defaultValue="+52 55 1234 5678" />
+                  <CustomInput type="tel" className={`${inputClass} pl-12`} placeholder="+52 (55) 1234 5678" maxLength={19} onInput={(e) => {
+                    e.currentTarget.value = formatPhoneMx(e.currentTarget.value);
+                  }} />
                 </div>
               </div>
               <div>
                 <label className={labelClass}>TELÉFONO SECUNDARIO</label>
                 <div className="relative">
                   <Smartphone size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                  <input type="text" className={`${inputClass} pl-12`} defaultValue="+52 55 8765 4321" />
+                  <CustomInput type="tel" className={`${inputClass} pl-12`} placeholder="+52 (55) 8765 4321" maxLength={19} onInput={(e) => {
+                    e.currentTarget.value = formatPhoneMx(e.currentTarget.value);
+                  }} />
                 </div>
               </div>
             </div>
@@ -93,7 +99,7 @@ export const MiConsultorio = () => {
               <label className={labelClass}>CORREO ELECTRÓNICO</label>
               <div className="relative">
                 <Mail size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                <input type="email" className={`${inputClass} pl-12`} defaultValue="contacto@dentalmartinez.com" />
+                <CustomInput type="email" className={`${inputClass} pl-12`} placeholder="contacto@dentalmartinez.com" maxLength={100} />
               </div>
             </div>
           </div>

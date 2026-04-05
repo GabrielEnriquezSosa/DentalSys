@@ -6,6 +6,7 @@ interface CustomDatePickerProps {
   onChange?: (date: string) => void;
   className?: string;
   placeholder?: string;
+  align?: 'left' | 'right';
 }
 
 export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
@@ -13,6 +14,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
   onChange,
   className = '',
   placeholder = 'dd/mm/aaaa',
+  align = 'left',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   
@@ -166,7 +168,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
       />
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1 w-[280px] bg-white border border-slate-200 rounded-lg shadow-xl z-50 p-4">
+        <div className={`absolute top-full ${align === 'right' ? 'right-0' : 'left-0'} mt-1 w-[280px] bg-white border border-slate-200 rounded-lg shadow-xl z-50 p-4`}>
           {/* Header */}
           <div className="flex justify-between items-center mb-4">
             <button className="flex items-center gap-1 font-bold text-slate-800 text-sm hover:text-sky-600 transition-colors">

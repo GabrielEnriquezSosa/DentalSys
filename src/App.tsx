@@ -13,6 +13,7 @@ import { Soporte } from "./presentation/pages/Soporte";
 import { HistorialRecetas } from "./presentation/pages/HistorialRecetas";
 import { ConsentimientoInformado } from "./presentation/pages/ConsentimientoInformado";
 import { Presupuesto } from "./presentation/pages/Presupuesto";
+import { HistorialPresupuestos } from "./presentation/pages/HistorialPresupuestos";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/receta/historial" element={<HistorialRecetas />} />
         <Route path="/consentimiento" element={<ConsentimientoInformado />} />
         <Route path="/presupuesto" element={<Presupuesto />} />
+        <Route path="/presupuesto/historial" element={<HistorialPresupuestos />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

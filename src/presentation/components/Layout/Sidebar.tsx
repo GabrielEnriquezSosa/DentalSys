@@ -6,7 +6,7 @@ import {
   Settings,
   HelpCircle,
   LogOut,
-  Banknote
+  Banknote,
 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -49,18 +49,20 @@ export const Sidebar = () => {
           />
           <span>Dashboard</span>
         </a>
-        <a 
-          href="/pagos" 
+        <a
+          href="/pagos"
           className={`${baseItemClass} ${location.pathname === "/pagos" ? activeItemClass : normalItemClass}`}
           onClick={(e) => {
             e.preventDefault();
             navigate("/pagos");
           }}
         >
-          <Banknote 
-            size={24} 
-            strokeWidth={1.5} 
-            className={location.pathname === "/pagos" ? "text-sky-500" : "text-slate-500"} 
+          <Banknote
+            size={24}
+            strokeWidth={1.5}
+            className={
+              location.pathname === "/pagos" ? "text-sky-500" : "text-slate-500"
+            }
           />
           <span>Recibir Pago</span>
         </a>

@@ -1,7 +1,18 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Layout } from "../components/Layout/Layout";
 import { Link } from "react-router-dom";
 import { AjustesRecetaModal } from "../components/modals/AjustesRecetaModal";
+import { AgregarAlergiaModal } from "../components/modals/AgregarAlergiaModal";
+import { CustomInput } from "../components/ui/CustomInput";
+import { CustomTextarea } from "../components/ui/CustomTextarea";
+import {
+  formatTalla,
+  formatIMC,
+  formatTA,
+  formatTemp,
+  formatSpO2,
+  formatNumber,
+} from "../utils/formatters";
 import {
   FileText,
   History,
@@ -13,13 +24,23 @@ import {
   Search,
   X,
   AlertTriangle,
-  Calendar as CalendarIcon,
   Info,
   Printer,
 } from "lucide-react";
 
 export const RecetaMedica = () => {
+  const indicacionesRef = useRef<HTMLTextAreaElement>(null);
   const [showAjustes, setShowAjustes] = useState(false);
+  const [showAlergia, setShowAlergia] = useState(false);
+  const [genero, setGenero] = useState("Masculino");
+  const [talla, setTalla] = useState("");
+  const [imc, setImc] = useState("");
+  const [ta, setTa] = useState("");
+  const [temp, setTemp] = useState("");
+  const [spo2, setSpo2] = useState("");
+  const [peso, setPeso] = useState("");
+  const [fc, setFc] = useState("");
+  const [fr, setFr] = useState("");
   const inputClass =
     "w-full border border-gray-300 rounded-xl px-4 py-3.5 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white transition-all text-gray-700 font-medium text-base";
   const labelClass =
@@ -93,20 +114,20 @@ export const RecetaMedica = () => {
             <div className="flex gap-6 mb-4">
               <div className="flex-1">
                 <label className={labelClass}>NOMBRE COMPLETO</label>
-                <input
+                <CustomInput
                   type="text"
-                  className={`${inputClass} bg-slate-50 font-semibold`}
-                  defaultValue="Juan Pérez López"
-                  readOnly
+                  className={inputClass}
+                  placeholder="Nombre completo"
+                  maxLength={50}
                 />
               </div>
               <div className="flex-1">
                 <label className={labelClass}>TELÉFONO</label>
-                <input
+                <CustomInput
                   type="text"
-                  className={`${inputClass} bg-slate-50 font-semibold`}
-                  defaultValue="+52 555-0123"
-                  readOnly
+                  className={inputClass}
+                  placeholder="Teléfono"
+                  maxLength={10}
                 />
               </div>
             </div>
@@ -115,21 +136,29 @@ export const RecetaMedica = () => {
               <div className="flex-1">
                 <label className={labelClass}>GÉNERO</label>
                 <div className="flex bg-gray-100 p-1 rounded-lg">
-                  <button className="flex-1 py-2 text-sm font-semibold rounded-md transition-all shadow-sm bg-white text-gray-900">
-                    Masculino
-                  </button>
-                  <button className="flex-1 py-2 text-sm font-semibold rounded-md transition-all text-gray-500 hover:text-gray-900">
-                    Femenino
-                  </button>
+                  {["Masculino", "Femenino", "Otro"].map((g) => (
+                    <button
+                      key={g}
+                      onClick={() => setGenero(g)}
+                      type="button"
+                      className={`flex-1 py-2 text-sm font-semibold rounded-md transition-all ${
+                        genero === g
+                          ? "shadow-sm bg-white text-gray-900"
+                          : "text-gray-500 hover:text-gray-900"
+                      }`}
+                    >
+                      {g}
+                    </button>
+                  ))}
                 </div>
               </div>
               <div className="flex-1">
                 <label className={labelClass}>EDAD / FECHA NAC.</label>
-                <input
+                <CustomInput
                   type="text"
-                  className={`${inputClass} bg-slate-50 font-semibold`}
-                  defaultValue="28 años (12/05/1995)"
-                  readOnly
+                  className={inputClass}
+                  placeholder="Edad o Fecha de Nac."
+                  maxLength={20}
                 />
               </div>
             </div>
@@ -145,7 +174,10 @@ export const RecetaMedica = () => {
                   LÁTEX{" "}
                   <X size={14} className="cursor-pointer hover:opacity-70" />
                 </div>
-                <button className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold border-2 border-dashed border-gray-300 text-gray-500 hover:border-blue-500 hover:text-blue-500 bg-transparent transition-colors">
+                <button
+                  onClick={() => setShowAlergia(true)}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold border-2 border-dashed border-gray-300 text-gray-500 hover:border-blue-500 hover:text-blue-500 bg-transparent transition-colors cursor-pointer"
+                >
                   + AÑADIR
                 </button>
               </div>
@@ -163,8 +195,16 @@ export const RecetaMedica = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mb-10">
             <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-200">
               <div className="text-xs font-bold text-gray-500 mb-2">PESO</div>
-              <div className="text-2xl font-bold text-gray-900">
-                74
+              <div className="flex items-baseline justify-center">
+                <input
+                  type="text"
+                  maxLength={5}
+                  inputMode="numeric"
+                  value={peso}
+                  onChange={(e) => setPeso(formatNumber(e.target.value))}
+                  className="w-16 text-center bg-transparent text-2xl font-bold text-gray-900 outline-none border-b border-transparent focus:border-gray-400 transition-colors placeholder:text-gray-300"
+                  placeholder="74"
+                />
                 <span className="text-sm text-gray-400 font-medium ml-1">
                   kg
                 </span>
@@ -172,8 +212,16 @@ export const RecetaMedica = () => {
             </div>
             <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-200">
               <div className="text-xs font-bold text-gray-500 mb-2">TALLA</div>
-              <div className="text-2xl font-bold text-gray-900">
-                1.78
+              <div className="flex items-baseline justify-center">
+                <input
+                  type="text"
+                  maxLength={4}
+                  inputMode="numeric"
+                  value={talla}
+                  onChange={(e) => setTalla(formatTalla(e.target.value))}
+                  className="w-16 text-center bg-transparent text-2xl font-bold text-gray-900 outline-none border-b border-transparent focus:border-gray-400 transition-colors placeholder:text-gray-300"
+                  placeholder="1.78"
+                />
                 <span className="text-sm text-gray-400 font-medium ml-1">
                   m
                 </span>
@@ -181,12 +229,30 @@ export const RecetaMedica = () => {
             </div>
             <div className="bg-blue-50 rounded-xl p-4 text-center border border-blue-200">
               <div className="text-xs font-bold text-blue-600 mb-2">IMC</div>
-              <div className="text-2xl font-bold text-blue-700">23.4</div>
+              <div className="flex items-baseline justify-center">
+                <input
+                  type="text"
+                  maxLength={5}
+                  inputMode="numeric"
+                  value={imc}
+                  onChange={(e) => setImc(formatIMC(e.target.value))}
+                  className="w-16 text-center bg-transparent text-2xl font-bold text-blue-700 outline-none border-b border-transparent focus:border-blue-400 transition-colors placeholder:text-blue-300"
+                  placeholder="23.4"
+                />
+              </div>
             </div>
             <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-200">
               <div className="text-xs font-bold text-gray-500 mb-2">SPO2</div>
-              <div className="text-2xl font-bold text-gray-900">
-                98
+              <div className="flex items-baseline justify-center">
+                <input
+                  type="text"
+                  maxLength={3}
+                  inputMode="numeric"
+                  value={spo2}
+                  onChange={(e) => setSpo2(formatSpO2(e.target.value))}
+                  className="w-16 text-center bg-transparent text-2xl font-bold text-gray-900 outline-none border-b border-transparent focus:border-gray-400 transition-colors placeholder:text-gray-300"
+                  placeholder="98"
+                />
                 <span className="text-sm text-gray-400 font-medium ml-1">
                   %
                 </span>
@@ -194,8 +260,16 @@ export const RecetaMedica = () => {
             </div>
             <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-200">
               <div className="text-xs font-bold text-gray-500 mb-2">FC</div>
-              <div className="text-2xl font-bold text-gray-900">
-                72
+              <div className="flex items-baseline justify-center">
+                <input
+                  type="text"
+                  maxLength={3}
+                  inputMode="numeric"
+                  value={fc}
+                  onChange={(e) => setFc(formatNumber(e.target.value))}
+                  className="w-16 text-center bg-transparent text-2xl font-bold text-gray-900 outline-none border-b border-transparent focus:border-gray-400 transition-colors placeholder:text-gray-300"
+                  placeholder="72"
+                />
                 <span className="text-sm text-gray-400 font-medium ml-1">
                   bpm
                 </span>
@@ -203,8 +277,16 @@ export const RecetaMedica = () => {
             </div>
             <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-200">
               <div className="text-xs font-bold text-gray-500 mb-2">FR</div>
-              <div className="text-2xl font-bold text-gray-900">
-                16
+              <div className="flex items-baseline justify-center">
+                <input
+                  type="text"
+                  maxLength={2}
+                  inputMode="numeric"
+                  value={fr}
+                  onChange={(e) => setFr(formatNumber(e.target.value))}
+                  className="w-16 text-center bg-transparent text-2xl font-bold text-gray-900 outline-none border-b border-transparent focus:border-gray-400 transition-colors placeholder:text-gray-300"
+                  placeholder="16"
+                />
                 <span className="text-sm text-gray-400 font-medium ml-1">
                   rpm
                 </span>
@@ -212,12 +294,28 @@ export const RecetaMedica = () => {
             </div>
             <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-200">
               <div className="text-xs font-bold text-gray-500 mb-2">T/A</div>
-              <div className="text-xl font-bold text-gray-900">120/80</div>
+              <div className="flex items-baseline justify-center">
+                <input
+                  type="text"
+                  maxLength={7}
+                  value={ta}
+                  onChange={(e) => setTa(formatTA(e.target.value))}
+                  className="w-20 text-center bg-transparent text-xl font-bold text-gray-900 outline-none border-b border-transparent focus:border-gray-400 transition-colors placeholder:text-gray-300"
+                  placeholder="120/80"
+                />
+              </div>
             </div>
             <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-200">
               <div className="text-xs font-bold text-gray-500 mb-2">TEMP</div>
-              <div className="text-2xl font-bold text-gray-900">
-                36.6
+              <div className="flex items-baseline justify-center">
+                <input
+                  type="text"
+                  maxLength={4}
+                  value={temp}
+                  onChange={(e) => setTemp(formatTemp(e.target.value))}
+                  className="w-16 text-center bg-transparent text-2xl font-bold text-gray-900 outline-none border-b border-transparent focus:border-gray-400 transition-colors placeholder:text-gray-300"
+                  placeholder="36.6"
+                />
                 <span className="text-sm text-gray-400 font-medium ml-1">
                   °C
                 </span>
@@ -233,10 +331,11 @@ export const RecetaMedica = () => {
                   size={20}
                   className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
                 />
-                <input
+                <CustomInput
                   type="text"
                   className={`${inputClass} pl-12 text-base`}
                   placeholder="Buscar diagnóstico (CIE-10)..."
+                  maxLength={30}
                 />
               </div>
               <button className="flex items-center gap-2 bg-blue-600 text-white px-8 py-3.5 rounded-xl font-bold text-base hover:bg-blue-700 transition-colors shadow-sm whitespace-nowrap">
@@ -274,23 +373,27 @@ export const RecetaMedica = () => {
           <div className="flex gap-8 mb-0">
             <div className="flex-[1.5]">
               <label className={labelClass}>INDICACIONES ADICIONALES</label>
-              <textarea
-                className={`${inputClass} resize-y min-h-[140px]`}
+              <CustomTextarea
+                ref={indicacionesRef}
+                className={`${inputClass} resize-none overflow-hidden min-h-[140px] block w-full pb-8`}
                 placeholder="Dieta blanda, evitar irritantes, no realizar esfuerzos físicos..."
-              ></textarea>
+                maxLength={200}
+                onChange={(e) => {
+                  e.target.style.height = "140px";
+                  e.target.style.height = `${e.target.scrollHeight}px`;
+                }}
+              />
             </div>
             <div className="flex-1">
-              <label className={labelClass}>PRÓXIMA CITA</label>
-              <div className="relative mb-6">
-                <CalendarIcon
-                  size={20}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                />
-                <input
-                  type="text"
-                  className={`${inputClass} pl-12 text-base`}
-                  defaultValue="24 / Septiembre / 2024"
-                />
+              <div className="flex gap-4 mb-6">
+                <div className="flex-1">
+                  <label className={labelClass}>FECHA</label>
+                  <input type="date" className={`${inputClass} text-base`} />
+                </div>
+                <div className="flex-1">
+                  <label className={labelClass}>HORA</label>
+                  <input type="time" className={`${inputClass} text-base`} />
+                </div>
               </div>
               <div className="flex items-start gap-4 p-5 rounded-xl bg-blue-50 border border-blue-200 text-blue-800 mt-0">
                 <Info size={24} className="shrink-0" />
@@ -318,6 +421,10 @@ export const RecetaMedica = () => {
       <AjustesRecetaModal
         isOpen={showAjustes}
         onClose={() => setShowAjustes(false)}
+      />
+      <AgregarAlergiaModal
+        isOpen={showAlergia}
+        onClose={() => setShowAlergia(false)}
       />
     </Layout>
   );

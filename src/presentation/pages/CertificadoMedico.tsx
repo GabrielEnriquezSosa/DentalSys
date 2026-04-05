@@ -1,4 +1,7 @@
 import { Layout } from "../components/Layout/Layout";
+import { formatTextOnly, formatNumber, formatTextWithPunctuation } from "../utils/formatters";
+import { CustomInput } from "../components/ui/CustomInput";
+import { CustomTextarea } from "../components/ui/CustomTextarea";
 import {
   FileBadge,
   User,
@@ -48,20 +51,26 @@ export const CertificadoMedico = () => {
           <div className="flex gap-8">
             <div className="flex-[2]">
               <label className={labelClass}>NOMBRE COMPLETO</label>
-              <input
+              <CustomInput
                 type="text"
-                className={`${inputClass} bg-slate-50 font-semibold`}
-                defaultValue="Juan Pérez García"
-                readOnly
+                className={inputClass}
+                placeholder="Ej: Juan Pérez García"
+                maxLength={50}
+                onInput={(e) => {
+                  e.currentTarget.value = formatTextOnly(e.currentTarget.value);
+                }}
               />
             </div>
             <div className="flex-[0.6]">
               <label className={labelClass}>EDAD</label>
-              <input
+              <CustomInput
                 type="text"
-                className={`${inputClass} bg-slate-50 font-semibold`}
-                defaultValue="34"
-                readOnly
+                className={inputClass}
+                placeholder="Ej: 34"
+                maxLength={2}
+                onInput={(e) => {
+                  e.currentTarget.value = formatNumber(e.currentTarget.value);
+                }}
               />
             </div>
           </div>
@@ -77,26 +86,33 @@ export const CertificadoMedico = () => {
           <div className="grid grid-cols-3 gap-8">
             <div>
               <label className={labelClass}>MÉDICO CERTIFICANTE</label>
-              <input
+              <CustomInput
                 type="text"
                 className={inputDarkClass}
-                defaultValue="Dr. Martínez"
+                placeholder="Ej: Dr. Martínez"
+                maxLength={50}
+                onInput={(e) => {
+                  e.currentTarget.value = formatTextWithPunctuation(e.currentTarget.value);
+                }}
               />
             </div>
             <div>
               <label className={labelClass}>LUGAR DE EXPEDICIÓN</label>
-              <input
+              <CustomInput
                 type="text"
                 className={inputDarkClass}
-                defaultValue="Ciudad de México"
+                placeholder="Ej: Ciudad de México"
+                maxLength={50}
+                onInput={(e) => {
+                  e.currentTarget.value = formatTextWithPunctuation(e.currentTarget.value);
+                }}
               />
             </div>
             <div>
               <label className={labelClass}>FECHA DE EXPEDICIÓN</label>
-              <input
+              <CustomInput
                 type="date"
                 className={inputClass}
-                defaultValue="2023-10-27"
               />
             </div>
           </div>
@@ -116,20 +132,25 @@ export const CertificadoMedico = () => {
                 size={20}
                 className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
               />
-              <input
+              <CustomInput
                 type="text"
                 className={`${inputClass} pl-12`}
                 placeholder="Buscar diagnóstico (CIE-10)..."
+                maxLength={25}
               />
             </div>
           </div>
 
           <div>
             <label className={labelClass}>PROCEDIMIENTO REALIZADO</label>
-            <textarea
-              className={`${inputClass} resize-y min-h-[160px]`}
-              placeholder="Describa el procedimiento detalladamente..."
-            ></textarea>
+            <CustomTextarea
+              className={`${inputClass} resize-none overflow-hidden min-h-[160px] pb-8`}
+              placeholder="Describa a detalle..."
+              onInput={(e) => {
+                e.currentTarget.style.height = "160px";
+                e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+              }}
+            />
           </div>
         </div>
 
@@ -146,7 +167,7 @@ export const CertificadoMedico = () => {
               <input
                 type="number"
                 className={inputDarkClass}
-                defaultValue="3"
+                placeholder="Ej: 3"
                 min={0}
               />
             </div>
@@ -155,7 +176,6 @@ export const CertificadoMedico = () => {
               <input
                 type="date"
                 className={inputClass}
-                defaultValue="2023-10-27"
               />
             </div>
             <div>
@@ -163,7 +183,6 @@ export const CertificadoMedico = () => {
               <input
                 type="date"
                 className={inputClass}
-                defaultValue="2023-10-30"
               />
             </div>
           </div>

@@ -1,4 +1,6 @@
 import { X } from "lucide-react";
+import { formatTextOnly } from "../../utils/formatters";
+import { CustomInput } from "../ui/CustomInput";
 
 interface NuevoConsentimientoModalProps {
   isOpen: boolean;
@@ -45,10 +47,14 @@ export const NuevoConsentimientoModal = ({
           {/* Nombre del procedimiento */}
           <div>
             <label className={labelClass}>Nombre del Procedimiento</label>
-            <input
+            <CustomInput
               type="text"
               placeholder="Ej: Exodoncia Simple"
               className={inputClass}
+              maxLength={50}
+              onInput={(e) => {
+                e.currentTarget.value = formatTextOnly(e.currentTarget.value);
+              }}
             />
           </div>
 

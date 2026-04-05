@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { Layout } from "../components/Layout/Layout";
+import { CustomInput } from "../components/ui/CustomInput";
+import { formatTextOnly, formatPercentage } from "../utils/formatters";
 import { 
   History, 
   ChevronRight,
@@ -13,6 +16,8 @@ import {
 } from "lucide-react";
 
 export const RecibirPago = () => {
+  const [showNotification, setShowNotification] = useState(true);
+
   const patientInputClass = "w-full border border-slate-200 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#007ba7] focus:border-[#007ba7] bg-slate-50 transition-all text-slate-700 font-medium placeholder:text-slate-400 text-base flex items-center gap-2";
   const labelClass = "block text-xs font-bold text-slate-500 mb-2 uppercase tracking-widest";
 
@@ -124,14 +129,29 @@ export const RecibirPago = () => {
                   <label className={labelClass}>PACIENTE</label>
                   <div className="relative">
                     <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
-                    <input type="text" className={`${patientInputClass} pl-10`} placeholder="Seleccionar paciente..." />
+                    <CustomInput 
+                      type="text" 
+                      className={`${patientInputClass} pl-10`} 
+                      placeholder="Seleccionar paciente..." 
+                      maxLength={50}
+                      onInput={(e) => {
+                        e.currentTarget.value = formatTextOnly(e.currentTarget.value);
+                      }}
+                    />
                   </div>
                 </div>
                 <div>
                   <label className={labelClass}>DESCUENTO (%)</label>
                   <div className="relative">
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">%</span>
-                    <input type="text" className={`${patientInputClass} pl-9`} placeholder="0" />
+                    <input 
+                      type="number" 
+                      className={`${patientInputClass} pl-9`} 
+                      placeholder="0" 
+                      onInput={(e) => {
+                        e.currentTarget.value = formatPercentage(e.currentTarget.value);
+                      }}
+                    />
                   </div>
                 </div>
               </div>
@@ -141,20 +161,25 @@ export const RecibirPago = () => {
                   <label className={labelClass}>MÉTODO DE PAGO</label>
                   <div className="relative cursor-pointer">
                     <Banknote className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
-                    <div className={`${patientInputClass} pl-10 cursor-pointer flex justify-between items-center`}>
-                       <span className="text-slate-800 font-bold">Efectivo</span>
-                       <ChevronDown size={16} className="text-slate-400" />
-                    </div>
+                    <select className={`${patientInputClass} pl-10 cursor-pointer appearance-none`}>
+                       <option value="efectivo">Efectivo</option>
+                       <option value="tarjeta">Tarjeta de Crédito / Débito</option>
+                       <option value="transferencia">Transferencia</option>
+                    </select>
+                    <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                   </div>
                 </div>
                 <div>
                   <label className={labelClass}>AGREGAR SERVICIO MANUAL</label>
                   <div className="relative cursor-pointer">
                     <PlusCircle className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
-                    <div className={`${patientInputClass} pl-10 cursor-pointer flex justify-between items-center`}>
-                       <span className="text-slate-500">Seleccionar tratamiento...</span>
-                       <ChevronDown size={16} className="text-slate-400" />
-                    </div>
+                    <select className={`${patientInputClass} pl-10 cursor-pointer appearance-none`} defaultValue="">
+                       <option value="" disabled>Seleccionar tratamiento...</option>
+                       <option value="resina">Resina Compuesta</option>
+                       <option value="profilaxis">Profilaxis Dental</option>
+                       <option value="extraccion">Extracción</option>
+                    </select>
+                    <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                   </div>
                 </div>
               </div>
@@ -163,11 +188,11 @@ export const RecibirPago = () => {
                 <label className={labelClass}>TIPO DE PAGO</label>
                 <div className="flex items-center gap-8 mt-2">
                   <label className="flex items-center gap-3 cursor-pointer">
-                    <div className="w-6 h-6 rounded-full border-[7px] border-[#006085] bg-white"></div>
+                    <input type="radio" name="tipoPago" defaultChecked className="w-5 h-5 accent-[#006085] cursor-pointer" />
                     <span className="text-base font-bold text-slate-800">Pagar Todo</span>
                   </label>
                   <label className="flex items-center gap-3 cursor-pointer">
-                    <div className="w-6 h-6 rounded-full border-[3px] border-slate-300 bg-white"></div>
+                    <input type="radio" name="tipoPago" className="w-5 h-5 accent-[#006085] cursor-pointer" />
                     <span className="text-base font-bold text-slate-600">Pago Parcial (Abono)</span>
                   </label>
                 </div>
@@ -235,18 +260,23 @@ export const RecibirPago = () => {
         </div>
 
         {/* Floating Notification (Simulated) */}
-        <div className="fixed bottom-8 right-8 bg-white rounded-2xl shadow-xl border border-slate-100 p-5 w-[360px] flex gap-5 animate-in slide-in-from-bottom-5 fade-in duration-300">
-           <div className="bg-sky-50 text-[#007ba7] w-12 h-12 rounded-full flex items-center justify-center shrink-0">
-             <Info size={24} strokeWidth={2.5}/>
-           </div>
-           <div className="flex-1 pr-2 flex flex-col justify-center">
-              <h4 className="text-sm font-bold text-slate-800 mb-1 leading-tight">Sistema Conectado</h4>
-              <p className="text-xs font-medium text-slate-500 leading-tight">Listo para procesar pagos de facturación inmediata.</p>
-           </div>
-           <button className="text-slate-400 hover:text-slate-600 opacity-50 hover:opacity-100 transition-opacity self-start mt-1">
-             <X size={18} />
-           </button>
-        </div>
+        {showNotification && (
+          <div className="fixed bottom-8 right-8 bg-white rounded-2xl shadow-xl border border-slate-100 p-5 w-[360px] flex gap-5 animate-in slide-in-from-bottom-5 fade-in duration-300">
+             <div className="bg-sky-50 text-[#007ba7] w-12 h-12 rounded-full flex items-center justify-center shrink-0">
+               <Info size={24} strokeWidth={2.5}/>
+             </div>
+             <div className="flex-1 pr-2 flex flex-col justify-center">
+                <h4 className="text-sm font-bold text-slate-800 mb-1 leading-tight">Sistema Conectado</h4>
+                <p className="text-xs font-medium text-slate-500 leading-tight">Listo para procesar pagos de facturación inmediata.</p>
+             </div>
+             <button 
+               className="text-slate-400 hover:text-slate-600 opacity-50 hover:opacity-100 transition-opacity self-start mt-1 border-none bg-transparent cursor-pointer"
+               onClick={() => setShowNotification(false)}
+             >
+               <X size={18} />
+             </button>
+          </div>
+        )}
 
       </div>
     </Layout>
