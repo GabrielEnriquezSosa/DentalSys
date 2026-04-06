@@ -48,9 +48,9 @@ export const RecetaMedica = () => {
 
   return (
     <Layout>
-      <div className="p-10 pb-36">
+      <div className="p-4 md:p-6 lg:p-10 pb-36">
         {/* Breadcrumbs & Header Actions */}
-        <div className="flex justify-between items-start mb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8">
           <div>
             <div className="text-sm font-semibold text-gray-500 mb-2 tracking-wider">
               PACIENTES /{" "}
@@ -58,12 +58,12 @@ export const RecetaMedica = () => {
                 NUEVA RECETA
               </span>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+            <h1 className="text-xl md:text-3xl font-bold text-gray-900 flex items-center gap-3">
               Nueva Receta Médica
               <FileText size={28} className="text-slate-400" />
             </h1>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-3">
             <Link
               to="/receta/historial"
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-base transition-all border border-pink-500 text-pink-500 hover:bg-pink-50 no-underline"
@@ -80,8 +80,8 @@ export const RecetaMedica = () => {
         </div>
 
         {/* Top Cards Row: Médico / Paciente */}
-        <div className="flex gap-8 mb-8">
-          <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 flex-[0.4]">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 mb-8">
+          <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-5 md:p-8 flex-1 lg:flex-[0.4]">
             <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
               <Lock size={24} className="text-sky-500" />
               Datos del Médico
@@ -105,13 +105,13 @@ export const RecetaMedica = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 flex-[0.6]">
+          <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-5 md:p-8 flex-1 lg:flex-[0.6]">
             <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
               <User size={24} className="text-sky-500" />
               Datos del Paciente
             </h2>
 
-            <div className="flex gap-6 mb-4">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-4">
               <div className="flex-1">
                 <label className={labelClass}>NOMBRE COMPLETO</label>
                 <CustomInput
@@ -132,7 +132,7 @@ export const RecetaMedica = () => {
               </div>
             </div>
 
-            <div className="flex gap-6 mb-4">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-4">
               <div className="flex-1">
                 <label className={labelClass}>GÉNERO</label>
                 <div className="flex bg-gray-100 p-1 rounded-lg">
@@ -186,7 +186,7 @@ export const RecetaMedica = () => {
         </div>
 
         {/* Signos Vitales y Diagnóstico Card */}
-        <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 mb-8">
+        <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-5 md:p-8 mb-8">
           <h2 className="text-xl font-bold text-gray-900 mb-8 flex items-center gap-3">
             <Activity size={24} className="text-sky-500" />
             Signos Vitales y Diagnóstico
@@ -352,7 +352,7 @@ export const RecetaMedica = () => {
         </div>
 
         {/* Medicamentos e Indicaciones */}
-        <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 mb-0">
+        <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-5 md:p-8 mb-0">
           <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
             <Plus size={24} className="text-sky-500" />
             Medicamentos e Indicaciones
@@ -370,7 +370,7 @@ export const RecetaMedica = () => {
             </div>
           </div>
 
-          <div className="flex gap-8 mb-0">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 mb-0">
             <div className="flex-[1.5]">
               <label className={labelClass}>INDICACIONES ADICIONALES</label>
               <CustomTextarea
@@ -385,7 +385,7 @@ export const RecetaMedica = () => {
               />
             </div>
             <div className="flex-1">
-              <div className="flex gap-4 mb-6">
+              <div className="flex flex-col sm:flex-row gap-4 mb-6">
                 <div className="flex-1">
                   <label className={labelClass}>FECHA</label>
                   <input type="date" className={`${inputClass} text-base`} />
@@ -407,7 +407,7 @@ export const RecetaMedica = () => {
         </div>
 
         {/* Footer Actions */}
-        <div className="fixed bottom-0 left-64 right-0 p-6 bg-white border-t border-gray-200 flex justify-end gap-6 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-40">
+        <div className="fixed bottom-0 left-0 lg:left-64 right-0 p-4 md:p-6 bg-white border-t border-gray-200 flex flex-col sm:flex-row justify-end gap-4 sm:gap-6 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-40">
           <button className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-base transition-all border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-400 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
             GUARDAR BORRADOR
           </button>

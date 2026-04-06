@@ -17,18 +17,18 @@ export const ConsentimientoInformado = () => {
   const [showNuevo, setShowNuevo] = useState(false);
   return (
     <Layout>
-      <div className="p-10 pb-8 flex flex-col min-h-[calc(100vh-2rem)]">
+      <div className="p-4 md:p-6 lg:p-10 pb-8 flex flex-col min-h-[calc(100vh-2rem)]">
         {/* Header */}
-        <div className="flex justify-between items-start mb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-extrabold text-slate-900 uppercase tracking-wide mb-1">
+            <h1 className="text-xl md:text-3xl font-extrabold text-slate-900 uppercase tracking-wide mb-1">
               Consentimiento Informado
             </h1>
             <p className="text-base text-slate-500 font-medium">
               Gestiona y genera documentos legales para tus procedimientos.
             </p>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-3">
             <button className="flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 shadow-sm">
               <FileUp size={18} />
               CARGAR TXT
@@ -81,12 +81,12 @@ export const ConsentimientoInformado = () => {
         </div>
 
         {/* Status Bar */}
-        <div className="flex justify-between items-center py-4 border-t border-slate-200 mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 border-t border-slate-200 mb-6 gap-3">
           <div className="flex items-center gap-2 text-sm text-slate-500 font-semibold tracking-wider">
             <span className="w-2 h-2 bg-slate-300 rounded-full" />0 DOCUMENTOS
             EN TOTAL
           </div>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-4 sm:gap-6">
             <button className="text-sm font-bold text-sky-700 uppercase tracking-wider bg-transparent border-none cursor-pointer hover:text-sky-800 transition-colors">
               Ver Historial
             </button>
@@ -97,7 +97,7 @@ export const ConsentimientoInformado = () => {
         </div>
 
         {/* Feature Cards */}
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {/* Plantillas base */}
           <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between mb-4">

@@ -26,20 +26,20 @@ export const MiConsultorio = () => {
 
   return (
     <Layout>
-      <div className="p-10 h-full flex flex-col w-full">
+      <div className="p-4 md:p-6 lg:p-10 h-full flex flex-col w-full">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Identidad del Consultorio</h1>
+          <h1 className="text-xl md:text-3xl font-bold text-slate-900 tracking-tight">Identidad del Consultorio</h1>
           <p className="text-base font-medium text-slate-500 mt-1">
             Configura la imagen institucional y los parámetros visuales para reportes y documentos clínicos.
           </p>
         </div>
 
         {/* Main Form Box */}
-        <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-10 flex gap-12 mb-10">
+        <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-5 md:p-10 flex flex-col lg:flex-row gap-8 lg:gap-12 mb-10">
           
           {/* Left Column (Images) */}
-          <div className="w-[360px] flex flex-col gap-8 shrink-0">
+          <div className="w-full lg:w-[360px] flex flex-col gap-8 shrink-0">
             {/* Logo Principal */}
             <div>
                <label className={labelClass}>LOGO DE LA CLÍNICA (PRINCIPAL)</label>
@@ -74,7 +74,7 @@ export const MiConsultorio = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
                 <label className={labelClass}>TELÉFONO PRINCIPAL</label>
                 <div className="relative">
@@ -120,7 +120,7 @@ export const MiConsultorio = () => {
              </button>
           </div>
 
-          <div className="grid grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
             {colorPalette.map((color, idx) => (
               <div key={idx} className="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 flex flex-col items-center group cursor-pointer hover:border-[#007ba7] hover:shadow-md transition-all">
                  <div className={`w-full h-32 rounded-xl mb-4 shadow-inner ${color.colorClass}`}></div>
@@ -133,7 +133,7 @@ export const MiConsultorio = () => {
 
         {/* Action Button */}
         <div className="mt-auto flex justify-end">
-           <button className="flex items-center gap-2 bg-[#007ba7] text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-[#006085] transition-colors shadow-sm">
+           <button className="flex items-center gap-2 bg-[#007ba7] text-white px-6 md:px-10 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-[#006085] transition-colors shadow-sm w-full sm:w-auto justify-center">
              <Save size={20} />
              GUARDAR IDENTIDAD COMPLETA
            </button>

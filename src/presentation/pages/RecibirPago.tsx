@@ -48,11 +48,11 @@ export const RecibirPago = () => {
 
   return (
     <Layout>
-      <div className="p-10 h-full flex flex-col w-full relative">
+      <div className="p-4 md:p-6 lg:p-10 h-full flex flex-col w-full relative">
         {/* Header */}
-        <div className="flex justify-between items-start mb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-[#006085] tracking-tight uppercase">RECIBIR PAGO</h1>
+            <h1 className="text-xl md:text-3xl font-bold text-[#006085] tracking-tight uppercase">RECIBIR PAGO</h1>
             <p className="text-base font-medium text-slate-500 mt-1">
               Registra pagos de tratamientos y servicios con precisión clínica.
             </p>
@@ -64,10 +64,10 @@ export const RecibirPago = () => {
         </div>
 
         {/* Content Layout */}
-        <div className="flex gap-8 flex-1 items-start pb-20">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 flex-1 items-start pb-20">
           
           {/* Left Column */}
-          <div className="w-[420px] flex flex-col gap-8 shrink-0">
+          <div className="w-full lg:w-[420px] flex flex-col gap-6 lg:gap-8 shrink-0">
             {/* Pending Patients Window */}
             <div className="bg-slate-50/80 rounded-2xl p-6 border border-slate-100">
                <div className="flex items-center justify-between mb-5">

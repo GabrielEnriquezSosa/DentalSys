@@ -25,8 +25,8 @@ export const HistorialRecetas = () => {
   return (
     <div className="flex flex-col h-screen bg-slate-50 font-sans text-slate-900">
       {/* Custom Top Bar */}
-      <header className="h-[70px] bg-white border-b border-slate-200 flex items-center justify-between px-8 sticky top-0 z-20">
-        <div className="flex items-center gap-8">
+      <header className="min-h-[70px] bg-white border-b border-slate-200 flex flex-wrap items-center justify-between px-4 md:px-8 py-3 sticky top-0 z-20 gap-3">
+        <div className="flex flex-wrap items-center gap-4 md:gap-8">
           <Link
             to="/receta"
             className="flex items-center gap-2 text-slate-600 font-semibold text-sm hover:text-sky-600 transition-colors no-underline"
@@ -57,7 +57,7 @@ export const HistorialRecetas = () => {
           </nav>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-4">
           <div className="relative w-[220px]">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
             <input
@@ -84,9 +84,9 @@ export const HistorialRecetas = () => {
       </header>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto p-10">
+      <div className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-10">
         {/* Filter Section */}
-        <div className="flex items-end gap-8 mb-10">
+        <div className="flex flex-col lg:flex-row items-start lg:items-end gap-4 lg:gap-8 mb-8 lg:mb-10">
           <div className="flex-shrink-0">
             <h2 className="text-2xl font-bold text-slate-900 mb-1">
               Búsqueda de Registros
@@ -96,9 +96,9 @@ export const HistorialRecetas = () => {
             </p>
           </div>
 
-          <div className="flex-1 flex items-end gap-4 justify-end">
+          <div className="w-full lg:flex-1 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-end gap-4 justify-end">
             {/* Paciente o Folio */}
-            <div className="flex-1 max-w-[280px]">
+            <div className="flex-1 sm:max-w-[280px]">
               <label className="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">
                 Paciente o Folio
               </label>
@@ -113,7 +113,7 @@ export const HistorialRecetas = () => {
             </div>
 
             {/* Desde */}
-            <div className="w-[170px]">
+            <div className="w-full sm:w-[170px]">
               <label className="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">
                 Desde
               </label>
@@ -124,7 +124,7 @@ export const HistorialRecetas = () => {
             </div>
 
             {/* Hasta */}
-            <div className="w-[170px]">
+            <div className="w-full sm:w-[170px]">
               <label className="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">
                 Hasta
               </label>
@@ -143,9 +143,9 @@ export const HistorialRecetas = () => {
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+        <div className="bg-white rounded-2xl border border-slate-200 overflow-x-auto shadow-sm">
           {/* Table Header */}
-          <div className="grid grid-cols-6 bg-slate-50 border-b border-slate-200 px-8 py-4">
+          <div className="grid grid-cols-6 bg-slate-50 border-b border-slate-200 px-4 md:px-8 py-4 min-w-[700px]">
             <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
               Fecha
             </span>
@@ -185,7 +185,7 @@ export const HistorialRecetas = () => {
           </div>
 
           {/* Pagination Footer */}
-          <div className="flex items-center justify-between px-8 py-4 bg-slate-50 border-t border-slate-200">
+          <div className="flex flex-col sm:flex-row items-center justify-between px-4 md:px-8 py-4 bg-slate-50 border-t border-slate-200 gap-3">
             <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
               Mostrando 0 - 0 de 0 resultados
             </span>

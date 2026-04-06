@@ -124,15 +124,15 @@ export const Dashboard = () => {
 
   return (
     <Layout>
-      <div className="p-10 w-full">
+      <div className="p-4 md:p-6 lg:p-10 w-full">
         {/* Hero Section */}
-        <div className="bg-slate-900 rounded-2xl p-10 flex justify-between items-center text-white mb-10 relative overflow-hidden shadow-md">
+        <div className="bg-slate-900 rounded-2xl p-6 md:p-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-white mb-6 md:mb-10 relative overflow-hidden shadow-md">
           <div className="relative z-10">
             <div className="inline-flex items-center gap-2 bg-sky-500/20 text-sky-400 py-2 px-4 rounded-full text-sm font-semibold mb-4">
               <span className="w-2 h-2 bg-sky-400 rounded-full" />
               ESTADO DEL DÍA
             </div>
-            <h1 className="text-3xl font-bold mb-3">
+            <h1 className="text-xl md:text-3xl font-bold mb-3">
               0 citas programadas para hoy
             </h1>
             <div className="flex items-center gap-2 text-slate-400 text-base">
@@ -140,28 +140,28 @@ export const Dashboard = () => {
               Martes, 17 de Septiembre, 2024
             </div>
           </div>
-          <button className="bg-sky-500 text-white border-none py-3.5 px-6 rounded-lg font-bold text-base inline-flex items-center gap-2 cursor-pointer transition-all duration-200 shadow-[0_4px_12px_rgba(14,165,233,0.3)] z-10 hover:bg-sky-600 hover:-translate-y-[1px] active:translate-y-0">
+          <button className="bg-sky-500 text-white border-none py-3 px-5 md:py-3.5 md:px-6 rounded-lg font-bold text-sm md:text-base inline-flex items-center gap-2 cursor-pointer transition-all duration-200 shadow-[0_4px_12px_rgba(14,165,233,0.3)] z-10 hover:bg-sky-600 hover:-translate-y-[1px] active:translate-y-0 w-full md:w-auto justify-center">
             <Plus size={20} />
             Agendar Nueva Cita
           </button>
         </div>
 
         {/* Modules Section */}
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center gap-3 text-2xl font-bold">
-            <LayoutGrid color="#0ea5e9" size={28} />
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2">
+          <div className="flex items-center gap-3 text-xl md:text-2xl font-bold">
+            <LayoutGrid color="#0ea5e9" size={24} />
             Gestión del Consultorio
           </div>
-          <div className="text-slate-500 text-base font-medium">
+          <div className="text-slate-500 text-sm md:text-base font-medium">
             11 módulos activos
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-5 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5 mb-6 md:mb-10">
           {modulesData.map((mod, i) => (
             <div
               key={i}
-              className="bg-white rounded-2xl p-6 flex flex-col border border-slate-200 transition-all duration-200 cursor-pointer hover:-translate-y-1 hover:shadow-md hover:border-slate-300"
+              className="bg-white rounded-2xl p-5 md:p-6 flex flex-col border border-slate-200 transition-all duration-200 cursor-pointer hover:-translate-y-1 hover:shadow-md hover:border-slate-300"
               onClick={() => mod.path && navigate(mod.path)}
             >
               <div
@@ -180,9 +180,9 @@ export const Dashboard = () => {
         </div>
 
         {/* Bottom Summaries */}
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
           {/* RecordWeekly Summary */}
-          <div className="bg-white rounded-2xl p-8 border border-slate-200">
+          <div className="bg-white rounded-2xl p-5 md:p-8 border border-slate-200">
             <div className="flex justify-between items-center mb-6">
               <span className="font-bold text-lg">Resumen Semanal</span>
               <a
@@ -225,7 +225,7 @@ export const Dashboard = () => {
           </div>
 
           {/* Next Reminders */}
-          <div className="bg-white rounded-2xl p-8 border border-slate-200">
+          <div className="bg-white rounded-2xl p-5 md:p-8 border border-slate-200">
             <div className="flex justify-between items-center mb-6">
               <span className="font-bold text-lg">Próximos Recordatorios</span>
               <button

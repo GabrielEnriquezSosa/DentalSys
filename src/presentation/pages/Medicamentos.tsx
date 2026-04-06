@@ -89,10 +89,10 @@ export const Medicamentos = () => {
 
   return (
     <Layout>
-      <div className="p-10 w-full flex flex-col h-full overflow-y-auto bg-slate-50">
+      <div className="p-4 md:p-6 lg:p-10 w-full flex flex-col h-full overflow-y-auto bg-slate-50">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+          <h1 className="text-xl md:text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
             <Pill size={32} className="text-rose-500" />
             Catálogo de Medicamentos
           </h1>
@@ -102,7 +102,7 @@ export const Medicamentos = () => {
         </div>
 
         {/* Form */}
-        <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200 mb-8">
+        <div className="bg-white rounded-3xl p-5 md:p-8 shadow-sm border border-slate-200 mb-8">
           <div className="flex items-center gap-3 text-lg font-bold mb-6 text-slate-900 uppercase tracking-wider">
             <PlusCircle color="#0ea5e9" size={22} />
             <span>Registro de Nuevo Medicamento</span>
@@ -115,7 +115,7 @@ export const Medicamentos = () => {
           )}
 
           <form onSubmit={handleSubmit}>
-            <div className="flex gap-6 mb-6">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6 mb-6">
               <div className="flex-1 flex flex-col">
                 <label className={labelClass}>
                   Nombre del Medicamento *
@@ -193,14 +193,14 @@ export const Medicamentos = () => {
         </div>
 
         {/* Table Header + Search */}
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
           <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
             Medicamentos Registrados
             <span className="bg-rose-50 text-rose-600 px-3 py-1 rounded-full text-xs font-bold ml-2">
               {medications.length}
             </span>
           </h2>
-          <div className="relative flex items-center w-[360px]">
+          <div className="relative flex items-center w-full sm:w-[360px]">
             <Search
               size={18}
               className="absolute left-4 text-slate-400"
@@ -216,7 +216,7 @@ export const Medicamentos = () => {
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm">
+        <div className="bg-white rounded-3xl border border-slate-200 overflow-x-auto shadow-sm">
           {isLoading && medications.length === 0 ? (
             <div className="flex justify-center p-16 text-slate-400 font-bold">
               Cargando medicamentos...

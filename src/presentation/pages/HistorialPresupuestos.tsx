@@ -55,7 +55,7 @@ export const HistorialPresupuestos = () => {
 
   return (
     <Layout>
-      <div className="p-10 w-full flex flex-col h-full overflow-y-auto bg-slate-50">
+      <div className="p-4 md:p-6 lg:p-10 w-full flex flex-col h-full overflow-y-auto bg-slate-50">
         {/* Header */}
         <div className="mb-8">
           <div className="text-sm font-semibold text-slate-400 mb-3 tracking-wider">
@@ -71,9 +71,9 @@ export const HistorialPresupuestos = () => {
               Historial
             </span>
           </div>
-          <div className="flex justify-between items-start">
+          <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+              <h1 className="text-xl md:text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
                 <Calculator size={32} className="text-violet-500" />
                 Historial de Presupuestos
               </h1>
@@ -92,7 +92,7 @@ export const HistorialPresupuestos = () => {
         </div>
 
         {/* Stats Row */}
-        <div className="grid grid-cols-3 gap-5 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
           <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 rounded-xl bg-violet-50 flex items-center justify-center">
@@ -156,7 +156,7 @@ export const HistorialPresupuestos = () => {
 
         {/* List */}
         <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-          <div className="flex items-center justify-between px-8 py-5 border-b border-slate-100">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-4 md:px-8 py-5 border-b border-slate-100 gap-3">
             <h2 className="text-lg font-bold text-slate-800 uppercase tracking-wider">
               Listado General
             </h2>
@@ -199,7 +199,7 @@ export const HistorialPresupuestos = () => {
                 return (
                   <div
                     key={budget.id}
-                    className="flex items-center justify-between px-8 py-5 hover:bg-slate-50/70 transition-colors cursor-pointer group"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between px-4 md:px-8 py-5 hover:bg-slate-50/70 transition-colors cursor-pointer group gap-4"
                   >
                     <div className="flex items-center gap-5 flex-1 min-w-0">
                       {/* Icon */}
@@ -217,7 +217,7 @@ export const HistorialPresupuestos = () => {
                             {status.label}
                           </span>
                         </div>
-                        <div className="flex items-center gap-4 text-xs text-slate-400 font-medium">
+                        <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-slate-400 font-medium">
                           <span className="flex items-center gap-1.5">
                             <Tag size={12} />
                             {budget.folio}

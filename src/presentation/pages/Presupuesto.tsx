@@ -97,7 +97,7 @@ export const Presupuesto = () => {
 
   return (
     <Layout>
-      <div className="p-10 pb-28">
+      <div className="p-4 md:p-6 lg:p-10 pb-28">
         {/* Breadcrumbs */}
         <div className="text-sm font-semibold text-slate-500 mb-6 tracking-wider flex justify-between items-center">
           <span>
@@ -116,7 +116,7 @@ export const Presupuesto = () => {
         </div>
 
         {/* Header */}
-        <div className="flex justify-between items-center mb-10">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 md:mb-10">
           <div className="flex items-center gap-4">
             <div className="w-14 h-14 rounded-2xl bg-sky-100 flex items-center justify-center">
               <FileText size={28} className="text-sky-600" />
@@ -141,7 +141,7 @@ export const Presupuesto = () => {
         </div>
 
         {/* Paciente + Servicio Row */}
-        <div className="grid grid-cols-2 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 md:mb-10">
           <div>
             <label className={labelClass}>Paciente / Prospecto</label>
             <div className="relative">
@@ -205,7 +205,7 @@ export const Presupuesto = () => {
           </div>
 
           {/* Table */}
-          <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+          <div className="bg-white border border-slate-200 rounded-2xl overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-slate-100">
@@ -272,10 +272,10 @@ export const Presupuesto = () => {
         </div>
 
         {/* Bottom Section: Discount/Notes + Summary */}
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           {/* Left: Discount & Notes */}
           <div>
-            <div className="grid grid-cols-2 gap-5 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
               <div>
                 <label className={labelClass}>Porcentaje de Descuento (%)</label>
                 <div className="relative">
@@ -358,7 +358,7 @@ export const Presupuesto = () => {
       </div>
 
       {/* Footer Actions */}
-      <div className="fixed bottom-0 left-64 right-0 p-5 bg-white border-t border-slate-200 flex justify-between items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-40">
+      <div className="fixed bottom-0 left-0 lg:left-64 right-0 p-4 md:p-5 bg-white border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-40 gap-3">
         <div className="flex items-center gap-6 text-xs text-slate-400 font-medium">
           <span>© Creado: {new Date().toLocaleDateString()}</span>
           <span>© Firma Digital Habilitada</span>

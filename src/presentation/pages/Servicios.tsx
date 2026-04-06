@@ -107,14 +107,14 @@ export const Servicios = () => {
 
   return (
     <Layout>
-      <div className="p-10 h-full flex flex-col w-full overflow-y-auto">
+      <div className="p-4 md:p-6 lg:p-10 h-full flex flex-col w-full overflow-y-auto">
         {/* Header */}
-        <div className="mb-10">
+        <div className="mb-6 md:mb-10">
           <div className="text-sm font-bold text-sky-600 mb-2 flex items-center gap-2">
             Configuración <span className="text-slate-300">›</span> Servicios y
             Precios
           </div>
-          <h1 className="text-3xl font-bold text-[#006085] tracking-tight">
+          <h1 className="text-xl md:text-3xl font-bold text-[#006085] tracking-tight">
             Gestión de Servicios y Precios
           </h1>
           <p className="text-base font-medium text-slate-500 mt-2">
@@ -126,7 +126,7 @@ export const Servicios = () => {
         <div className="flex flex-col xl:flex-row gap-8 flex-1 items-start">
           {/* Left Column - Nuevo Servicio */}
           <div className="w-full xl:w-[420px] flex flex-col gap-6 shrink-0">
-            <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 flex flex-col gap-8">
+            <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-5 md:p-8 flex flex-col gap-6 md:gap-8">
               <h2 className="text-lg font-bold text-slate-800 flex items-center gap-3 tracking-tight">
                 <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center">
                   <CreditCard size={20} />
@@ -265,7 +265,7 @@ export const Servicios = () => {
               </div>
 
               {/* Table Header */}
-              <div className="grid grid-cols-[1fr_2fr_120px_80px] gap-6 px-8 py-5 border-b border-slate-100 bg-slate-50/50">
+              <div className="hidden md:grid grid-cols-[1fr_2fr_120px_80px] gap-6 px-4 md:px-8 py-5 border-b border-slate-100 bg-slate-50/50">
                 <div className="text-xs font-bold text-slate-400 uppercase tracking-widest">
                   SERVICIO
                 </div>
@@ -310,12 +310,12 @@ export const Servicios = () => {
                   filteredServices.map((srv) => (
                     <div
                       key={srv.id}
-                      className="grid grid-cols-[1fr_2fr_120px_80px] gap-6 px-8 py-6 border-b border-slate-50 items-center hover:bg-slate-50 transition-colors"
+                      className="grid grid-cols-[1fr_auto] md:grid-cols-[1fr_2fr_120px_80px] gap-2 md:gap-6 px-4 md:px-8 py-4 md:py-6 border-b border-slate-50 items-center hover:bg-slate-50 transition-colors"
                     >
                       <div className="text-base font-bold text-slate-800 capitalize">
                         {srv.name}
                       </div>
-                      <div className="text-sm font-medium text-slate-500 truncate">
+                      <div className="hidden md:block text-sm font-medium text-slate-500 truncate">
                         {srv.description || "—"}
                       </div>
                       <div className="text-base font-bold text-[#007ba7] text-right">
@@ -335,7 +335,7 @@ export const Servicios = () => {
               </div>
 
               {/* Footer */}
-              <div className="p-6 border-t border-slate-100 flex justify-between items-center mt-auto">
+              <div className="p-4 md:p-6 border-t border-slate-100 flex justify-between items-center mt-auto">
                 <div className="text-sm font-medium text-slate-500">
                   Mostrando {filteredServices.length} de {services.length}{" "}
                   registros
@@ -346,7 +346,7 @@ export const Servicios = () => {
             {/* Bottom Summary Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-2">
               {/* Total Servicios */}
-              <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 flex flex-col justify-center">
+              <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-5 md:p-8 flex flex-col justify-center">
                 <div className="flex items-center gap-4 mb-3">
                   <div className="w-12 h-12 rounded-2xl bg-sky-50 flex items-center justify-center text-sky-500">
                     <TrendingUp size={24} strokeWidth={1.5} />
@@ -355,7 +355,7 @@ export const Servicios = () => {
                     <p className="text-xs font-bold text-slate-400 tracking-wider uppercase">
                       TOTAL SERVICIOS
                     </p>
-                    <h3 className="text-3xl font-bold text-slate-800 tracking-tight">
+                    <h3 className="text-2xl md:text-3xl font-bold text-slate-800 tracking-tight">
                       {services.length}
                     </h3>
                   </div>
@@ -363,7 +363,7 @@ export const Servicios = () => {
               </div>
 
               {/* Costo Promedio */}
-              <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 flex flex-col justify-center">
+              <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-5 md:p-8 flex flex-col justify-center">
                 <div className="flex items-center gap-4 mb-3">
                   <div className="w-12 h-12 rounded-2xl bg-green-50 flex items-center justify-center text-green-500">
                     <DollarSign size={24} strokeWidth={1.5} />
@@ -372,7 +372,7 @@ export const Servicios = () => {
                     <p className="text-xs font-bold text-slate-400 tracking-wider uppercase">
                       COSTO PROMEDIO
                     </p>
-                    <h3 className="text-3xl font-bold text-slate-800 tracking-tight">
+                    <h3 className="text-2xl md:text-3xl font-bold text-slate-800 tracking-tight">
                       $ {avgCost}
                     </h3>
                   </div>
@@ -380,7 +380,7 @@ export const Servicios = () => {
               </div>
 
               {/* Última actualización */}
-              <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 flex flex-col justify-center">
+              <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-5 md:p-8 flex flex-col justify-center">
                 <div className="flex items-center gap-4 mb-3">
                   <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center text-orange-500">
                     <Clock size={24} strokeWidth={1.5} />

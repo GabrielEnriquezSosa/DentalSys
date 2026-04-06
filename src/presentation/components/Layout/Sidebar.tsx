@@ -10,7 +10,11 @@ import {
 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-export const Sidebar = () => {
+interface SidebarProps {
+  onNavigate?: () => void;
+}
+
+export const Sidebar = ({ onNavigate }: SidebarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -22,8 +26,14 @@ export const Sidebar = () => {
   const activeItemClass =
     "bg-sky-100 text-sky-500 border-blue-800 hover:bg-sky-100";
 
+  const handleNav = (path: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate(path);
+    onNavigate?.();
+  };
+
   return (
-    <aside className="w-[280px] bg-white border-r border-slate-200 flex flex-col shrink-0">
+    <aside className="w-[280px] h-full bg-white border-r border-slate-200 flex flex-col shrink-0">
       <div className="p-8 flex items-center gap-4 mb-2">
         <div className="w-10 h-10 rounded-full bg-sky-500 shrink-0"></div>
         <span className="text-[26px] font-bold text-sky-500 tracking-tight">
@@ -35,10 +45,7 @@ export const Sidebar = () => {
         <a
           href="/"
           className={`${baseItemClass} ${location.pathname === "/" ? activeItemClass : normalItemClass}`}
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/");
-          }}
+          onClick={handleNav("/")}
         >
           <LayoutDashboard
             size={24}
@@ -52,10 +59,7 @@ export const Sidebar = () => {
         <a
           href="/pagos"
           className={`${baseItemClass} ${location.pathname === "/pagos" ? activeItemClass : normalItemClass}`}
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/pagos");
-          }}
+          onClick={handleNav("/pagos")}
         >
           <Banknote
             size={24}
@@ -66,16 +70,28 @@ export const Sidebar = () => {
           />
           <span>Recibir Pago</span>
         </a>
-        <a href="#" className={`${baseItemClass} ${normalItemClass}`}>
-          <Users size={24} strokeWidth={1.5} className="text-slate-500" />
+        <a
+          href="/pacientes"
+          className={`${baseItemClass} ${location.pathname === "/pacientes" ? activeItemClass : normalItemClass}`}
+          onClick={handleNav("/pacientes")}
+        >
+          <Users size={24} strokeWidth={1.5} className={location.pathname === "/pacientes" ? "text-sky-500" : "text-slate-500"} />
           <span>Pacientes</span>
         </a>
-        <a href="#" className={`${baseItemClass} ${normalItemClass}`}>
-          <Calendar size={24} strokeWidth={1.5} className="text-slate-500" />
+        <a
+          href="/agenda"
+          className={`${baseItemClass} ${location.pathname === "/agenda" ? activeItemClass : normalItemClass}`}
+          onClick={handleNav("/agenda")}
+        >
+          <Calendar size={24} strokeWidth={1.5} className={location.pathname === "/agenda" ? "text-sky-500" : "text-slate-500"} />
           <span>Agenda</span>
         </a>
-        <a href="#" className={`${baseItemClass} ${normalItemClass}`}>
-          <Package size={24} strokeWidth={1.5} className="text-slate-500" />
+        <a
+          href="/medicamentos"
+          className={`${baseItemClass} ${location.pathname === "/medicamentos" ? activeItemClass : normalItemClass}`}
+          onClick={handleNav("/medicamentos")}
+        >
+          <Package size={24} strokeWidth={1.5} className={location.pathname === "/medicamentos" ? "text-sky-500" : "text-slate-500"} />
           <span>Inventario</span>
         </a>
 
@@ -83,15 +99,23 @@ export const Sidebar = () => {
           <div className="text-[13px] font-semibold text-slate-500 uppercase tracking-widest mb-4 pl-4">
             Sistema
           </div>
-          <a href="#" className={`${baseItemClass} ${normalItemClass}`}>
-            <Settings size={24} strokeWidth={1.5} className="text-slate-500" />
+          <a
+            href="/servicios"
+            className={`${baseItemClass} ${location.pathname === "/servicios" ? activeItemClass : normalItemClass}`}
+            onClick={handleNav("/servicios")}
+          >
+            <Settings size={24} strokeWidth={1.5} className={location.pathname === "/servicios" ? "text-sky-500" : "text-slate-500"} />
             <span>Configuración</span>
           </a>
-          <a href="#" className={`${baseItemClass} ${normalItemClass}`}>
+          <a
+            href="/soporte"
+            className={`${baseItemClass} ${location.pathname === "/soporte" ? activeItemClass : normalItemClass}`}
+            onClick={handleNav("/soporte")}
+          >
             <HelpCircle
               size={24}
               strokeWidth={1.5}
-              className="text-slate-500"
+              className={location.pathname === "/soporte" ? "text-sky-500" : "text-slate-500"}
             />
             <span>Soporte</span>
           </a>

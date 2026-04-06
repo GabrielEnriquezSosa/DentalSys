@@ -102,11 +102,11 @@ export const CalendarioCitas = () => {
 
   return (
     <Layout>
-      <div className="p-10 h-full flex flex-col gap-8 w-full overflow-y-auto bg-slate-50">
+      <div className="p-4 md:p-6 lg:p-10 h-full flex flex-col gap-6 lg:gap-8 w-full overflow-y-auto bg-slate-50">
         {/* Page Header */}
-        <div className="flex justify-between items-start">
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-slate-800 tracking-tight flex items-center gap-3">
+            <h1 className="text-xl md:text-3xl font-bold text-slate-800 tracking-tight flex items-center gap-3">
               <CalendarIcon size={32} className="text-sky-500" />
               Calendario de Citas
             </h1>
@@ -124,7 +124,7 @@ export const CalendarioCitas = () => {
         </div>
 
         {/* Main Calendar Card */}
-        <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+        <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-x-auto flex flex-col">
           {/* Calendar Toolbar */}
           <div className="p-6 border-b border-slate-100 flex justify-between items-center">
             <div className="flex items-center gap-8">
@@ -160,7 +160,7 @@ export const CalendarioCitas = () => {
           </div>
 
           {/* Calendar Grid Header */}
-          <div className="grid grid-cols-7 border-b border-slate-100 bg-slate-50/30">
+          <div className="grid grid-cols-7 border-b border-slate-100 bg-slate-50/30 min-w-[700px]">
             {["DOM", "LUN", "MAR", "MIE", "JUE", "VIE", "SAB"].map(
               (day) => (
                 <div
@@ -174,7 +174,7 @@ export const CalendarioCitas = () => {
           </div>
 
           {/* Calendar Grid Body */}
-          <div className="grid grid-cols-7 flex-1 border-l border-slate-100">
+          <div className="grid grid-cols-7 flex-1 border-l border-slate-100 min-w-[700px]">
             {calendarCells.map((cell, idx) => {
               const dayAppts = appointmentsByDate[cell.dateISO] || [];
               const isToday = cell.dateISO === todayISO && cell.isCurrentMonth;
@@ -225,9 +225,9 @@ export const CalendarioCitas = () => {
         </div>
 
         {/* Bottom Metrics Section */}
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {/* Metric 1: Monthly Summary */}
-          <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 flex flex-col justify-center">
+          <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-5 md:p-8 flex flex-col justify-center">
             <div className="flex items-center gap-5 mb-6">
               <div className="w-16 h-16 rounded-2xl bg-sky-50 flex items-center justify-center text-sky-500">
                 <CalendarIcon size={32} strokeWidth={1.5} />

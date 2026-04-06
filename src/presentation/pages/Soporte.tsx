@@ -20,9 +20,9 @@ import mapImg from "../../assets/map_torreon.webp";
 export const Soporte = () => {
   return (
     <Layout>
-      <div className="p-10 w-full">
+      <div className="p-4 md:p-6 lg:p-10 w-full">
         {/* Hero Banner */}
-        <div className="relative bg-gradient-to-r from-sky-600 to-sky-500 rounded-2xl p-10 mb-10 overflow-hidden shadow-md">
+        <div className="relative bg-gradient-to-r from-sky-600 to-sky-500 rounded-2xl p-6 md:p-10 mb-8 md:mb-10 overflow-hidden shadow-md">
           {/* Decorative cross */}
           <div className="absolute right-10 top-1/2 -translate-y-1/2 opacity-15">
             <svg width="140" height="140" viewBox="0 0 140 140" fill="none">
@@ -31,7 +31,7 @@ export const Soporte = () => {
             </svg>
           </div>
           <div className="relative z-10 max-w-2xl">
-            <h1 className="text-4xl font-extrabold text-white mb-4 leading-tight">
+            <h1 className="text-2xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
               ¿Cómo podemos ayudarte hoy?
             </h1>
             <p className="text-sky-100 text-lg leading-relaxed font-medium">
@@ -43,7 +43,7 @@ export const Soporte = () => {
         </div>
 
         {/* Content: 2-column layout */}
-        <div className="flex gap-8">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
           {/* Left Column — Canales de Soporte */}
           <div className="flex-[2]">
             <h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-3">
@@ -52,7 +52,7 @@ export const Soporte = () => {
             </h2>
 
             {/* WhatsApp + Correo row */}
-            <div className="grid grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
               {/* WhatsApp Card */}
               <div className="bg-white rounded-2xl border border-slate-200 p-7 flex flex-col justify-between">
                 <div>
@@ -109,7 +109,7 @@ export const Soporte = () => {
             </div>
 
             {/* Social Media row */}
-            <div className="grid grid-cols-2 gap-6 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
               {/* Facebook Card */}
               <div className="bg-white rounded-2xl border border-slate-200 p-7">
                 <div className="flex items-center gap-4 mb-5">

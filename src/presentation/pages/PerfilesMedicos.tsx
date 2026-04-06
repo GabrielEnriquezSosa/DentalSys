@@ -84,10 +84,10 @@ export const PerfilesMedicos = () => {
 
   return (
     <Layout>
-      <div className="p-10 w-full flex flex-col h-full overflow-y-auto bg-slate-50">
+      <div className="p-4 md:p-6 lg:p-10 w-full flex flex-col h-full overflow-y-auto bg-slate-50">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+          <h1 className="text-xl md:text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
             <Stethoscope size={32} className="text-cyan-500" />
             Perfiles Médicos
           </h1>
@@ -99,7 +99,7 @@ export const PerfilesMedicos = () => {
         <div className="flex flex-col xl:flex-row gap-8">
           {/* Formulario de Creación */}
           <div className="w-full xl:w-[680px] shrink-0">
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200">
+            <div className="bg-white rounded-3xl p-5 md:p-8 shadow-sm border border-slate-200">
               <h2 className="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2 uppercase tracking-wider">
                 <BadgeCheck size={20} className="text-cyan-500" />
                 Nuevo Perfil
@@ -142,7 +142,7 @@ export const PerfilesMedicos = () => {
                 </div>
 
                 {/* Especialidad + Cédula */}
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-1 flex flex-col">
                     <label className={labelClass}>Especialidad *</label>
                     <CustomInput
@@ -190,7 +190,7 @@ export const PerfilesMedicos = () => {
                 </div>
 
                 {/* Teléfono + Universidad */}
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-1 flex flex-col">
                     <label className={labelClass}>Teléfono para Citas *</label>
                     <div className="relative">
@@ -332,7 +332,7 @@ export const PerfilesMedicos = () => {
           </div>
 
           {/* Listado de Perfiles */}
-          <div className="flex-1 bg-white rounded-3xl p-8 shadow-sm border border-slate-200">
+          <div className="flex-1 bg-white rounded-3xl p-5 md:p-8 shadow-sm border border-slate-200">
             <h2 className="text-lg font-bold text-slate-800 mb-6 flex justify-between items-center">
               <span className="uppercase tracking-wider">
                 Directorio Médico
@@ -391,7 +391,7 @@ export const PerfilesMedicos = () => {
                       </button>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-y-2 gap-x-6 mt-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-6 mt-4">
                       <div className="flex items-center gap-2 text-sm text-slate-600 font-medium">
                         <Hash size={14} className="text-slate-400" />
                         Cédula: {profile.licenseNumber}

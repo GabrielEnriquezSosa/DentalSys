@@ -119,11 +119,11 @@ export const Agenda = () => {
 
   return (
     <Layout>
-      <div className="p-4 md:p-10 h-full flex flex-col w-full max-w-full overflow-x-hidden overflow-y-auto bg-slate-50">
+      <div className="p-4 md:p-6 lg:p-10 h-full flex flex-col w-full max-w-full overflow-x-hidden overflow-y-auto bg-slate-50">
         {/* Header */}
         <div className="flex flex-col xl:flex-row xl:justify-between items-start xl:items-end gap-6 mb-10 w-full">
           <div>
-            <h1 className="text-3xl font-bold text-slate-800 uppercase tracking-tight flex items-center gap-3">
+            <h1 className="text-xl md:text-3xl font-bold text-slate-800 uppercase tracking-tight flex items-center gap-3">
               <CalendarDays size={32} className="text-sky-500" />
               AGENDA
             </h1>
@@ -157,7 +157,7 @@ export const Agenda = () => {
         <div className="flex flex-col xl:flex-row gap-8 flex-1 items-start w-full">
           {/* Left Column - Nueva Cita */}
           <div className="w-full xl:w-[420px] flex flex-col gap-6 shrink-0">
-            <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8">
+            <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-5 md:p-8">
               <h2 className="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2 tracking-tight">
                 <PlusCircle size={24} className="text-sky-500" />
                 NUEVA CITA
@@ -216,7 +216,7 @@ export const Agenda = () => {
                   </div>
                 </div>
 
-                <div className="flex gap-4 mb-4">
+                <div className="flex flex-col sm:flex-row gap-4 mb-4">
                   <div className="flex-1">
                     <label className={labelClass}>FECHA *</label>
                     <CustomDatePicker
@@ -240,7 +240,7 @@ export const Agenda = () => {
                   </div>
                 </div>
 
-                <div className="flex gap-4 mb-6">
+                <div className="flex flex-col sm:flex-row gap-4 mb-6">
                   <div className="flex-1">
                     <label className={labelClass}>DURACIÓN</label>
                     <select
@@ -298,9 +298,9 @@ export const Agenda = () => {
           </div>
 
           {/* Right Column - Panel Consultas */}
-          <div className="flex-1 bg-white rounded-3xl shadow-sm border border-slate-200 flex flex-col relative min-h-[700px]">
+          <div className="flex-1 bg-white rounded-3xl shadow-sm border border-slate-200 flex flex-col relative min-h-[400px] lg:min-h-[700px]">
             {/* Panel Header */}
-            <div className="p-8 border-b border-slate-100 flex justify-between items-center">
+            <div className="p-4 md:p-8 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
               <h2 className="text-sm font-bold text-slate-800 tracking-wide uppercase">
                 PANEL DE CONSULTAS PROGRAMADAS
               </h2>

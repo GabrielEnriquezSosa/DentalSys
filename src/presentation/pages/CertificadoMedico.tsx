@@ -23,7 +23,7 @@ export const CertificadoMedico = () => {
 
   return (
     <Layout>
-      <div className="p-10 pb-36 w-full">
+      <div className="p-4 md:p-6 lg:p-10 pb-36 w-full">
         {/* Page Header */}
         <div className="mb-10">
           <div className="flex items-center gap-4 mb-2">
@@ -31,7 +31,7 @@ export const CertificadoMedico = () => {
               <FileBadge size={28} className="text-emerald-600" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-slate-900 tracking-tight">
+              <h1 className="text-xl md:text-3xl font-bold text-slate-900 tracking-tight">
                 CERTIFICADO MÉDICO
               </h1>
               <p className="text-base font-medium text-slate-500 mt-0.5">
@@ -42,13 +42,13 @@ export const CertificadoMedico = () => {
         </div>
 
         {/* Datos del Paciente */}
-        <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 mb-8">
+        <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-5 md:p-8 mb-8">
           <h2 className="text-xl font-bold text-gray-900 mb-8 flex items-center gap-3">
             <User size={24} className="text-sky-600" />
             DATOS DEL PACIENTE
           </h2>
 
-          <div className="flex gap-8">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
             <div className="flex-[2]">
               <label className={labelClass}>NOMBRE COMPLETO</label>
               <CustomInput
@@ -77,13 +77,13 @@ export const CertificadoMedico = () => {
         </div>
 
         {/* Datos Generales */}
-        <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 mb-8">
+        <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-5 md:p-8 mb-8">
           <h2 className="text-xl font-bold text-gray-900 mb-8 flex items-center gap-3">
             <Info size={24} className="text-sky-600" />
             DATOS GENERALES
           </h2>
 
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <div>
               <label className={labelClass}>MÉDICO CERTIFICANTE</label>
               <CustomInput
@@ -155,13 +155,13 @@ export const CertificadoMedico = () => {
         </div>
 
         {/* Indicaciones de Reposo */}
-        <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 mb-8">
+        <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-5 md:p-8 mb-8">
           <h2 className="text-xl font-bold text-gray-900 mb-8 flex items-center gap-3">
             <CalendarIcon size={24} className="text-sky-600" />
             INDICACIONES DE REPOSO
           </h2>
 
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <div>
               <label className={labelClass}>DÍAS DE REPOSO</label>
               <input
@@ -189,7 +189,7 @@ export const CertificadoMedico = () => {
         </div>
 
         {/* Firmas */}
-        <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 mb-0">
+        <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-5 md:p-8 mb-0">
           <h2 className="text-xl font-bold text-gray-900 mb-8 flex items-center gap-3">
             <PenLine size={24} className="text-sky-600" />
             FIRMAS
@@ -207,7 +207,7 @@ export const CertificadoMedico = () => {
         </div>
 
         {/* Footer Actions */}
-        <div className="fixed bottom-0 left-64 right-0 p-6 bg-white border-t border-gray-200 flex justify-end gap-6 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-40">
+        <div className="fixed bottom-0 left-0 lg:left-64 right-0 p-4 md:p-6 bg-white border-t border-gray-200 flex flex-col sm:flex-row justify-end gap-4 sm:gap-6 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-40">
           <button className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-base transition-all text-sky-600 hover:text-sky-700 hover:bg-sky-50">
             Cancelar
           </button>

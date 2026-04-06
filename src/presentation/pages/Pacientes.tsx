@@ -38,9 +38,9 @@ export const Pacientes = () => {
 
   return (
     <Layout>
-      <div className="p-10 w-full flex flex-col h-full overflow-y-auto bg-slate-50">
+      <div className="p-4 md:p-6 lg:p-10 w-full flex flex-col h-full overflow-y-auto bg-slate-50">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+          <h1 className="text-xl md:text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
             <Users size={32} className="text-sky-500" />
             Directorio de Pacientes
           </h1>
@@ -52,7 +52,7 @@ export const Pacientes = () => {
         <div className="flex flex-col xl:flex-row gap-8">
           {/* Formulario de Creación */}
           <div className="w-full xl:w-[400px] shrink-0">
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200">
+            <div className="bg-white rounded-3xl p-5 md:p-8 shadow-sm border border-slate-200">
               <h2 className="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
                 <Plus size={20} className="text-sky-500" />
                 NUEVO REGISTRO
@@ -121,7 +121,7 @@ export const Pacientes = () => {
           </div>
 
           {/* Lista de Pacientes */}
-          <div className="flex-1 bg-white rounded-3xl p-8 shadow-sm border border-slate-200">
+          <div className="flex-1 bg-white rounded-3xl p-5 md:p-8 shadow-sm border border-slate-200">
             <h2 className="text-lg font-bold text-slate-800 mb-6 flex justify-between items-center">
               <span>LISTADO GENERAL</span>
               <span className="bg-sky-50 text-sky-600 px-3 py-1 rounded-full text-xs font-bold">
